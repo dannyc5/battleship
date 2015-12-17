@@ -25,4 +25,14 @@ describe GamesController do
       expect(response_json['game']['bot']['name']).not_to be_empty
     end
   end
+
+  describe 'DELETE destroy' do
+    let!(:game) { create(:game, :with_players) }
+
+    it 'destroys a game' do
+      expect {
+        delete :destroy, id: game.id
+      }.to change(Game, :count).by -1
+    end
+  end
 end

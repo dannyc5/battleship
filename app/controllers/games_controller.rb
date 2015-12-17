@@ -10,6 +10,12 @@ class GamesController < ApplicationController
     render json: game, serializer: GameSerializer
   end
 
+  def destroy
+    game = Game.find params[:id]
+    game.destroy!
+    render json: {}, status: :ok
+  end
+
   private
 
   def human_params
