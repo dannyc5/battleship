@@ -1,0 +1,2 @@
+class Bot < Player
+end

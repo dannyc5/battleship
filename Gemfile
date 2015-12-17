@@ -21,7 +21,7 @@ group :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'database_cleaner', '1.5.1'
   gem 'factory_girl_rails'
-  # gem 'faker'
+  gem 'faker'
   # gem 'capybara'
   # gem 'selenium-webdriver'
   # gem 'shoulda-matchers'
