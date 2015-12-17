@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20151217025312) do
 
   create_table "players", force: :cascade do |t|
     t.integer  "game_id",                null: false
+    t.string   "type",       limit: 255, null: false
     t.string   "name",       limit: 255, null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false

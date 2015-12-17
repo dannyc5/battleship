@@ -7,6 +7,7 @@ class CreateBattleship < ActiveRecord::Migration
 
     create_table :players do |t|
       t.integer :game_id, null: false
+      t.string :type, null: false, limit: 255
       t.string :name, null: false, limit: 255
       t.timestamps null: false
     end
