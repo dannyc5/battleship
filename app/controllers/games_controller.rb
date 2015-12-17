@@ -4,10 +4,12 @@ class GamesController < ApplicationController
   end
 
   def create
-    game = Game.create
-    game.create_human(name: human_params[:name])
-    game.create_bot(name: BotNameGenerator.instance.execute)
-    render json: game, serializer: GameSerializer
+    result = GameCreator.new(human_params[:name], human_params[:ships]).execute
+    if result.success?
+      render json: result.game, serializer: GameSerializer
+    else
+      render json: {errors: result.errors}, status: 422
+    end
   end
 
   def destroy
@@ -19,6 +21,6 @@ class GamesController < ApplicationController
   private
 
   def human_params
-    params.require(:human).permit(:name)
+    params.require(:human).permit(:name, ships: [:row, :column])
   end
 end

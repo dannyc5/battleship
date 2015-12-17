@@ -10,19 +10,17 @@ describe GamesController do
 
   describe 'POST create' do
     let(:human_name) { Faker::Name.name }
-    let(:valid_params) { {human: {name: human_name}} }
 
-    it 'creates a new game' do
-      expect {
+    context 'valid params' do
+      let(:valid_params) { {human: {name: human_name, ships: valid_ship_coordinates}} }
+
+      it 'responds with a the nested game json' do
         post :create, valid_params
-      }.to change(Player, :count).by 2
-    end
-
-    it 'responds with a the game information' do
-      post :create, valid_params
-      expect(response_json['game']).not_to be_empty
-      expect(response_json['game']['human']['name']).to eq human_name
-      expect(response_json['game']['bot']['name']).not_to be_empty
+        expect(response_json['game']).not_to be_empty
+        expect(response_json['game']['human']['name']).to eq human_name
+        expect(response_json['game']['human']['board']).not_to be_empty
+        expect(response_json['game']['bot']['name']).not_to be_empty
+      end
     end
   end
 
