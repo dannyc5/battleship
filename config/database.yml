@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: 5
+
+development:
+  <<: *default
+  database: battleship_development
+
+test:
+  <<: *default
+  database: battleship_test
+
+production:
+  <<: *default
+  database: battleship_production
+  username: battleship
+  password: <%= ENV['BATTLESHIP_DATABASE_PASSWORD'] %>
