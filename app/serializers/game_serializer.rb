@@ -1,5 +1,5 @@
 class GameSerializer < ActiveModel::Serializer
-  attributes :id, :human, :bot
+  attributes :id, :human, :bot, :winner_id
 
   def human
     PlayerSerializer.new(object.human).serializable_object
