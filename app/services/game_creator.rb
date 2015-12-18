@@ -39,7 +39,7 @@ class GameCreator
     bboard = game.bot.create_board
 
     hboard.ships.create ship_coordinates
-    bboard.generate_bot_ships
+    bboard.generate_bot_ships!
   end
 
   def validate_ship_coordinate_input!
