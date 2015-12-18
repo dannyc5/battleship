@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'games#index'
+  root 'pages#landing'
 
   resources :games, only: [:index, :create, :destroy]
   resources :moves, only: [:create]
