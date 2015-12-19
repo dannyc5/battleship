@@ -8,12 +8,4 @@ class Player < ActiveRecord::Base
   def ship_at?(row:, column:)
     ships.exists?(row: row, column: column)
   end
-
-  def human?
-    type == 'human'
-  end
-
-  def bot?
-    type == 'bot'
-  end
 end
