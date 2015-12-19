@@ -1,4 +1,6 @@
 class Move < ActiveRecord::Base
+  include Griddable
+
   belongs_to :player
 
   validates_presence_of :player_id, :row, :column
@@ -8,11 +10,7 @@ class Move < ActiveRecord::Base
 
   delegate :game, to: :player
 
-  def opponent
-    Player.where(game_id: player.game_id).where.not(id: player_id).take
-  end
-
   def hit
-    opponent.ship_at?(row: row, column: column)
+    game.hit? self, player
   end
 end

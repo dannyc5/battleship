@@ -6,4 +6,8 @@ class Game < ActiveRecord::Base
   def ended?
     winner_id.present?
   end
+
+  def hit?(move, player)
+    player.opponent.ship_at? move.coordinates
+  end
 end
