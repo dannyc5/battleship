@@ -1,4 +1,4 @@
-module Griddable
+module Locatable
   extend ActiveSupport::Concern
 
   def coordinates

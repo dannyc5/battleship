@@ -1,5 +1,5 @@
 class Ship < ActiveRecord::Base
-  include Griddable
+  include Locatable
 
   belongs_to :board
 

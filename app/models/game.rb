@@ -3,11 +3,28 @@ class Game < ActiveRecord::Base
   has_one :human
   has_one :bot
 
-  def ended?
+  def respond_to_human!
+    set_winner! human
+
+    unless won?
+      bot.generate_move!
+      set_winner! bot
+    end
+  end
+
+  def hit?(coordinates, player)
+    player.opponent.ship_at? coordinates
+  end
+
+  def won?
     winner_id.present?
   end
 
-  def hit?(move, player)
-    player.opponent.ship_at? move.coordinates
+  private
+
+  def set_winner!(player)
+    if !won? && player.moves.where(hit: true).count == Board::SHIPS_ALLOWED
+      update!(winner: player)
+    end
   end
 end

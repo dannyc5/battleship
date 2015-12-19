@@ -9,10 +9,14 @@ class Board < ActiveRecord::Base
     ships.create! generated_ship_attrs
   end
 
+  def generate_move_coordinate
+    select_random_open_coordinate
+  end
+
   private
 
   def generated_ship_attrs
-    possible_coordinates.sample(SHIPS_ALLOWED).map do |coordinate|
+    all_coordinates.sample(SHIPS_ALLOWED).map do |coordinate|
       {
         row: coordinate.first,
         column: coordinate.second
@@ -20,7 +24,20 @@ class Board < ActiveRecord::Base
     end
   end
 
-  def possible_coordinates
+  def select_random_open_coordinate
+    coordinate = open_coordinates.sample
+
+    {
+      row: coordinate.first,
+      column: coordinate.second
+    }
+  end
+
+  def open_coordinates
+    all_coordinates - ships.pluck(:row, :column)
+  end
+
+  def all_coordinates
     SIZE.to_a.repeated_permutation(2).to_a
   end
 end

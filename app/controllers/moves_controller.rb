@@ -3,6 +3,9 @@ class MovesController < ApplicationController
     move = Move.new move_params
 
     if move.save
+      game = move.game
+      game.respond_to_human!
+
       render json: move, serializer: MoveSerializer
     else
       render json: {errors: move.errors.messages}, status: 422
