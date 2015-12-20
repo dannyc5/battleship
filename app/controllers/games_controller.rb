@@ -3,6 +3,11 @@ class GamesController < ApplicationController
     @games = Game.all
   end
 
+  def show
+    game = Game.find params[:id]
+    render json: game, serializer: GameSerializer
+  end
+
   def create
     result = GameCreator.new(human_params[:name], human_params[:ships]).execute
     if result.success?
