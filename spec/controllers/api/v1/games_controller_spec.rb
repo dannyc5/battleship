@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe GamesController do
+describe Api::V1::GamesController do
   describe 'GET index' do
     it 'responds with a 200' do
       get :index

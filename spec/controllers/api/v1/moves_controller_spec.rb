@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe MovesController do
+describe Api::V1::MovesController do
   describe 'POST create' do
     let(:game)         { create(:game) }
     let(:human)        { create(:human, game_id: game.id)}
