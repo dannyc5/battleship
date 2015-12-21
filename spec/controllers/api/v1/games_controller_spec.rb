@@ -9,18 +9,15 @@ describe Api::V1::GamesController do
   end
 
   describe 'POST create' do
-    let(:human_name) { Faker::Name.name }
+    it 'responds with a 200' do
+      post :create
+      expect(response).to be_ok
+    end
 
-    context 'valid params' do
-      let(:valid_params) { {human: {name: human_name, ships: valid_ship_coordinates}} }
-
-      it 'responds with a the nested game json' do
-        post :create, valid_params
-        expect(response_json['game']).not_to be_empty
-        expect(response_json['game']['human']['name']).to eq human_name
-        expect(response_json['game']['human']['board']).not_to be_empty
-        expect(response_json['game']['bot']['name']).not_to be_empty
-      end
+    it 'responds with a new game with a bot' do
+      post :create
+      expect(response_json['game']).not_to be_empty
+      expect(response_json['game']['bot']['name']).not_to be_empty
     end
   end
 

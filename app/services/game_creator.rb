@@ -1,20 +1,16 @@
 class GameCreator
-  attr_accessor :game, :name, :ship_coordinates, :errors
+  attr_accessor :game, :errors
 
-  def initialize(name, ship_coordinates)
-    @name = name
-    @ship_coordinates = ship_coordinates
+  def initialize
     @errors = []
   end
 
   def execute
     begin
-      validate_ship_coordinate_input!
-
       ActiveRecord::Base.transaction do
         @game = Game.create
-        create_players
-        create_boards_and_ships
+        create_bot
+        create_bot_board
       end
     rescue StandardError => e
       errors << e.message
@@ -29,22 +25,12 @@ class GameCreator
 
   private
 
-  def create_players
-    game.create_human(name: name)
+  def create_bot
     game.create_bot(name: BotNameGenerator.instance.execute)
   end
 
-  def create_boards_and_ships
-    hboard = game.human.create_board
+  def create_bot_board
     bboard = game.bot.create_board
-
-    hboard.ships.create ship_coordinates
     bboard.generate_bot_ships!
-  end
-
-  def validate_ship_coordinate_input!
-    if ship_coordinates.length != Board::SHIPS_ALLOWED
-      raise "Number of ships must be #{Board::SHIPS_ALLOWED}."
-    end
   end
 end

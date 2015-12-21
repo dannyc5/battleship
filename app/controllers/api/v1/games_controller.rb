@@ -9,7 +9,7 @@ class Api::V1::GamesController < ApplicationController
   end
 
   def create
-    result = GameCreator.new(human_params[:name], human_params[:ships]).execute
+    result = GameCreator.new.execute
     if result.success?
       render json: result.game, serializer: GameSerializer
     else
@@ -21,11 +21,5 @@ class Api::V1::GamesController < ApplicationController
     game = Game.find params[:id]
     game.destroy!
     render json: {}, status: :ok
-  end
-
-  private
-
-  def human_params
-    params.require(:human).permit(:name, ships: [:row, :column])
   end
 end
