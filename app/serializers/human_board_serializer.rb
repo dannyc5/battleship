@@ -1,3 +1,4 @@
 class HumanBoardSerializer < ActiveModel::Serializer
-  attributes :id, :player_id, :ships
+  attributes :id, :player_id
+  has_many :ships, embed: :ids
 end

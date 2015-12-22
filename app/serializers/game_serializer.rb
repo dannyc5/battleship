@@ -1,5 +1,11 @@
 class GameSerializer < ActiveModel::Serializer
-  attributes :id, :human, :bot, :winner_id
-  has_one :human, serializer: PlayerSerializer
-  has_one :bot, serializer: PlayerSerializer
+  attributes :id, :human_id, :bot_id, :winner_id
+
+  def human_id
+    object.human.try :id
+  end
+
+  def bot_id
+    object.bot.id
+  end
 end

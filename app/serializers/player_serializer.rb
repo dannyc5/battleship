@@ -1,13 +1,7 @@
 class PlayerSerializer < ActiveModel::Serializer
-  attributes :id, :game_id, :name, :board
+  attributes :id, :game_id, :name, :board_id
 
-  def board
-    board_serializer.new(object.board).serializable_object
-  end
-
-  private
-
-  def board_serializer
-    object.type.camelize.concat('BoardSerializer').constantize
+  def board_id
+    object.board.id
   end
 end
