@@ -9,6 +9,7 @@ class HumanBoardCreator
 
   def execute
     begin
+      check_for_board_and_ships!
       validate_ship_coordinate_input!
 
       ActiveRecord::Base.transaction do
@@ -27,8 +28,14 @@ class HumanBoardCreator
 
   private
 
+  def check_for_board_and_ships!
+    if human.board && human.board.ships.any?
+      raise 'Board already exists for this player'
+    end
+  end
+
   def create_boards_and_ships
-    @board = human.create_board
+    @board = human.board || human.create_board
     board.ships.create ship_coordinates
   end
 

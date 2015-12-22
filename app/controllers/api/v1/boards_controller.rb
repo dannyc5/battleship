@@ -6,7 +6,7 @@ class Api::V1::BoardsController < ApplicationController
     if result.success?
       render json: result.board, serializer: HumanBoardSerializer, root: 'board'
     else
-      render json: {errors: board.errors.messages}, status: 422
+      render json: {errors: result.errors.messages}, status: 422
     end
   end
 
