@@ -1,8 +1,13 @@
 class Api::V1::HumansController < ApplicationController
+  def show
+    human = Human.find(params[:id])
+    render json: human, serializer: PlayerSerializer, root: 'human'
+  end
+
   def create
     game = Game.find player_params[:game_id]
     if game.human.present?
-      render json: {errors: human.errors.messages}, status: 422
+      render json: game.human, serializer: PlayerSerializer, root: 'human'
     else
       human = game.create_human! name: player_params[:name]
       human.create_board!
