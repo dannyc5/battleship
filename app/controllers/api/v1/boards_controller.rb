@@ -1,4 +1,9 @@
 class Api::V1::BoardsController < ApplicationController
+  def show
+    board = Board.find params[:id]
+    render json: board, serializer: HumanBoardSerializer, root: 'board'
+  end
+
   def create
     human = Human.find board_params[:player_id]
     result = HumanBoardCreator.new(human, board_params[:ships]).execute
