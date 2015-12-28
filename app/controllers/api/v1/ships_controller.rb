@@ -1,6 +1,15 @@
 class Api::V1::ShipsController < ApplicationController
   def create
-    ship = Ship.create! ship_params
+    ship = Ship.new ship_params
+    if ship.save
+      render json: ship, serializer: ShipSerializer
+    else
+      render json: {errors: ship.errors.messages}, status: 422
+    end
+  end
+
+  def show
+    ship = Ship.find_by ship_params
     render json: ship, serializer: ShipSerializer
   end
 
