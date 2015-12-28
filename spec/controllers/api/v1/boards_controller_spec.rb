@@ -9,11 +9,5 @@ describe Api::V1::BoardsController do
       post :create, valid_params
       expect(response).to be_ok
     end
-
-    it 'responds with a new board for a human with ships' do
-      post :create, valid_params
-      expect(response_json['board']).not_to be_empty
-      expect(response_json['board']['ships'][0]).not_to be_empty
-    end
   end
 end
