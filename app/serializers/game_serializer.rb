@@ -1,7 +1,6 @@
 class GameSerializer < ActiveModel::Serializer
-  embed :ids, embed_in_root: true
-
   attributes :id, :winner_id
 
-  has_many :players, polymorphic: true
+  has_one :human, polymorphic: true
+  has_one :bot, polymorphic: true
 end

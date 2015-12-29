@@ -1,6 +1,4 @@
 class PlayerSerializer < ActiveModel::Serializer
-  embed :ids, embed_in_root: true
-
-  attributes :id, :name, :game_id
+  attributes :id, :name, :game_id, :type
   has_one :board
 end
