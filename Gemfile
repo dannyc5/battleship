@@ -11,7 +11,7 @@ gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'uglifier', '>= 1.3.0'
 
-gem 'active_model_serializers', '0.9.3'
+gem 'active_model_serializers', '~> 0.10.0.rc3'
 
 group :development, :test do
   gem 'pry'
