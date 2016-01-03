@@ -12,6 +12,12 @@ class Api::V1::MovesController < ApplicationController
     end
   end
 
+  def index
+    player = Player.find params[:player_id]
+    moves = Move.where(player_id: params[:player_id])
+    render json: moves, each_serializer: MoveSerializer
+  end
+
   private
 
   def move_params
