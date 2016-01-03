@@ -1,4 +1,4 @@
 class MoveSerializer < ActiveModel::Serializer
-  attributes :id, :row, :column, :hit
-  belongs_to :player
+  attributes :id, :hit
+  belongs_to :cell
 end

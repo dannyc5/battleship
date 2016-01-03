@@ -1,3 +1,4 @@
 class ShipSerializer < ActiveModel::Serializer
-  attributes :id, :row, :column
+  attributes :id
+  belongs_to :cell
 end

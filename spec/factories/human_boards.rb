@@ -1,7 +1,7 @@
 FactoryGirl.define do
-  factory :human do
+  factory :human_board do
     association :game
-    type 'Human'
+    type 'HumanBoard'
     name { Faker::Lorem.name }
   end
 end

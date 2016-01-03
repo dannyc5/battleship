@@ -14,10 +14,9 @@ describe Api::V1::GamesController do
       expect(response).to be_ok
     end
 
-    it 'responds with a new game with a bot' do
+    it 'responds in accordance with the JSON api' do
       post :create
-      expect(response_json['game']).not_to be_empty
-      expect(response_json['game']['bot']['name']).not_to be_empty
+      expect(response_json['data']).not_to be_empty
     end
   end
 

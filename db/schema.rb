@@ -11,15 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151219024451) do
+ActiveRecord::Schema.define(version: 20151217025312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "boards", force: :cascade do |t|
-    t.integer  "player_id",  null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "cells", force: :cascade do |t|
+    t.integer  "player_board_id", null: false
+    t.integer  "row",             null: false
+    t.integer  "column",          null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "games", force: :cascade do |t|
@@ -29,15 +31,13 @@ ActiveRecord::Schema.define(version: 20151219024451) do
   end
 
   create_table "moves", force: :cascade do |t|
-    t.integer  "player_id",                  null: false
-    t.integer  "row",                        null: false
-    t.integer  "column",                     null: false
+    t.integer  "cell_id",                    null: false
+    t.boolean  "hit",        default: false, null: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.boolean  "hit",        default: false, null: false
   end
 
-  create_table "players", force: :cascade do |t|
+  create_table "player_boards", force: :cascade do |t|
     t.integer  "game_id",                null: false
     t.string   "type",       limit: 255, null: false
     t.string   "name",       limit: 255, null: false
@@ -46,9 +46,7 @@ ActiveRecord::Schema.define(version: 20151219024451) do
   end
 
   create_table "ships", force: :cascade do |t|
-    t.integer  "board_id",   null: false
-    t.integer  "row",        null: false
-    t.integer  "column",     null: false
+    t.integer  "cell_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

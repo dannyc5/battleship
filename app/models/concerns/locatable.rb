@@ -1,10 +1,10 @@
 module Locatable
-  extend ActiveSupport::Concern
+  # extend ActiveSupport::Concern
 
-  def coordinates
-    {
-      row: row,
-      column: column
-    }
-  end
+  # def coordinates
+  #   {
+  #     row: row,
+  #     column: column
+  #   }
+  # end
 end
