@@ -1,13 +1,11 @@
 class BotBoard < PlayerBoard
-  def opponent
+  def opponent_board
     game.human_board
   end
 
   def generate_bot_ships!
     ActiveRecord::Base.transaction do
-      random_cells.map do |cell|
-        cell.create_ship!
-      end
+      random_cells.map(&:create_ship!)
     end
   end
 

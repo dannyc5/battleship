@@ -22,7 +22,7 @@ class Game < ActiveRecord::Base
   private
 
   def set_winner!(player_board)
-    if !won? && player_board.moves.hits.count == PlayerBoard::SHIPS_ALLOWED
+    if !won? && player_board.opponent_board.moves.hits.count == PlayerBoard::SHIPS_ALLOWED
       update!(winner: player_board)
     end
   end

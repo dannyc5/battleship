@@ -9,4 +9,5 @@ class Cell < ActiveRecord::Base
   validates_inclusion_of :column, :in => PlayerBoard::SIZE
 
   default_scope { order(row: :asc, column: :asc) }
+  scope :with_ship, -> { joins(:ship) }
 end

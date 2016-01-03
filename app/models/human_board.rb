@@ -1,5 +1,5 @@
 class HumanBoard < PlayerBoard
-  def opponent
+  def opponent_board
     game.bot_board
   end
 

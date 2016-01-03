@@ -7,7 +7,7 @@ class PlayerBoard < ActiveRecord::Base
   after_create :generate_cells
   has_many :cells
   has_many :ships, through: :cells
-  has_many :moves, through: :cells
+  has_many :moves, through: :cells # moves refers to moves made by the opponent
 
   validates_presence_of :game_id, :name, :type
 
