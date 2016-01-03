@@ -11,9 +11,6 @@ class PlayerBoard < ActiveRecord::Base
 
   validates_presence_of :game_id, :name, :type
 
-  # def ship_at?(row:, column:)
-  #   ships.exists?(row: row, column: column)
-  # end
   private
 
   def all_coordinates

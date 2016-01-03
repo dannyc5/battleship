@@ -3,15 +3,13 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
-      resources :games, only: [:index, :show, :create, :destroy] do
-        # resources :players, only: [:index]
-      end
+      resources :games, only: [:index, :show, :create, :destroy]
       resources :moves, only: [:create, :index]
-      # resources :boards, only: [:show]
       resources :human_boards, only: [:create, :show]
+      resources :ships, only: [:create, :show, :index]
+      # resources :boards, only: [:show]
       # resources :bots, only: [:show]
       # resources :players, only: [:show]
-      # resources :ships, only: [:create, :show, :index]
     end
   end
 end
