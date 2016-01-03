@@ -1,6 +1,7 @@
 class Move < ActiveRecord::Base
   belongs_to :cell
   delegate :player_board, to: :cell
+  delegate :game, to: :player_board
 
   validates_presence_of :cell_id
   validates_uniqueness_of :cell_id
