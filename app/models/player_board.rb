@@ -1,6 +1,7 @@
 class PlayerBoard < ActiveRecord::Base
   SHIPS_ALLOWED = 10
   SIZE = 1..5
+  CELLS = SIZE.to_a.length * SIZE.to_a.length
 
   belongs_to :game
   after_create :generate_cells

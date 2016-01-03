@@ -1,4 +1,4 @@
 class ShipSerializer < ActiveModel::Serializer
   attributes :id
-  has_one :cell
+  belongs_to :cell
 end

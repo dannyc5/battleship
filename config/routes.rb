@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       end
       # resources :moves, only: [:create, :index]
       # resources :boards, only: [:show]
-      # resources :humans, only: [:create, :show]
+      resources :human_boards, only: [:create, :show]
       # resources :bots, only: [:show]
       # resources :players, only: [:show]
       # resources :ships, only: [:create, :show, :index]

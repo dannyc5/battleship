@@ -1,23 +1,22 @@
 class Api::V1::HumanBoardsController < ApplicationController
-  # def show
-  #   human = Human.find(params[:id])
-  #   render json: human
-  # end
+  def show
+    human_board = HumanBoard.find(params[:id])
+    render json: human_board
+  end
 
-  # def create
-  #   game = Game.find player_params[:game_id]
-  #   if game.human.present?
-  #     render json: game.human
-  #   else
-  #     human = game.create_human! name: player_params[:name]
-  #     human.create_board!
-  #     render json: human
-  #   end
-  # end
+  def create
+    game = Game.find human_board_params[:game_id]
+    if game.human_board.present?
+      render json: game.human_board
+    else
+      human_board = game.create_human_board! name: human_board_params[:name]
+      render json: human_board
+    end
+  end
 
-  # private
+  private
 
-  # def player_params
-  #   params.require(:human).permit(:name, :game_id)
-  # end
+  def human_board_params
+    params.require(:human_board).permit(:name, :game_id)
+  end
 end
