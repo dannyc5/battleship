@@ -9,8 +9,9 @@ Rails.application.routes.draw do
       resources :moves, only: [:create]
       resources :boards, only: [:show]
       resources :humans, only: [:create, :show]
+      resources :bots, only: [:show]
       resources :players, only: [:show]
-      resources :ships, only: [:create]
+      resources :ships, only: [:create, :show]
     end
   end
 end

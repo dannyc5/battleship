@@ -5,7 +5,7 @@ class Api::V1::GamesController < ApplicationController
 
   def show
     game = Game.find params[:id]
-    render json: game, serializer: GameSerializer
+    render json: game, serializer: GameSerializer, include: %w(players, players.board)
   end
 
   def create

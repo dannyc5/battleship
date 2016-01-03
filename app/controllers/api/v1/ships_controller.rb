@@ -9,8 +9,9 @@ class Api::V1::ShipsController < ApplicationController
   end
 
   def show
-    ship = Ship.find_by ship_params
-    render json: ship, serializer: ShipSerializer
+    ship = Ship.find params[:id]
+    serializer = ship.player.is_a?(Human) ? ShipSerializer : SecretShipSerializer
+    render json: ship, serializer: serializer
   end
 
   private

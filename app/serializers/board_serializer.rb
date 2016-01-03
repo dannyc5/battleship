@@ -1,6 +1,5 @@
 class BoardSerializer < ActiveModel::Serializer
-  attributes :id, :player_id, :created_at, :updated_at
-
+  attributes :id
   has_many :ships
-  has_one :player, polymorphic: true
+  belongs_to :player, polymorphic: true
 end
