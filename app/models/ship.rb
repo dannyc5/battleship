@@ -9,7 +9,7 @@ class Ship < ActiveRecord::Base
   private
 
   def under_ship_limit
-    if player_board.ships.count >= Board::SHIPS_ALLOWED
+    if player_board.ships.count >= PlayerBoard::SHIPS_ALLOWED
       errors.add :cell_id, "Board already has enough ships."
     end
   end

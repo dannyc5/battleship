@@ -4,6 +4,7 @@ class PlayerBoard < ActiveRecord::Base
 
   belongs_to :game
   after_create :generate_cells
+  has_many :cells
   has_many :ships, through: :cells
   has_many :moves, through: :cells
 
@@ -18,7 +19,7 @@ class PlayerBoard < ActiveRecord::Base
     SIZE.to_a.repeated_permutation(2).to_a
   end
 
-  def all_coordinates_as_hash
+  def all_coordinates_as_hashes
     all_coordinates.map do |coordinate|
       {
         row: coordinate[0],
@@ -28,6 +29,6 @@ class PlayerBoard < ActiveRecord::Base
   end
 
   def generate_cells
-    create_cells! all_coordinates_as_hash
+    cells.create! all_coordinates_as_hashes
   end
 end
