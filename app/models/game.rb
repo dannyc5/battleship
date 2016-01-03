@@ -5,16 +5,12 @@ class Game < ActiveRecord::Base
   has_one :bot_board
 
   # def respond_to_human!
-  #   set_winner! human
+  #   set_winner! human_board
 
   #   unless won?
-  #     bot.generate_move!
-  #     set_winner! bot
+  #     bot_board.generate_move!
+  #     set_winner! bot_board
   #   end
-  # end
-
-  # def hit?(coordinates, player)
-  #   player.opponent.ship_at? coordinates
   # end
 
   def won?
@@ -23,9 +19,9 @@ class Game < ActiveRecord::Base
 
   # private
 
-  # def set_winner!(player)
-  #   if !won? && player.moves.where(hit: true).count == Board::SHIPS_ALLOWED
-  #     update!(winner: player)
+  # def set_winner!(player_board)
+  #   if !won? && player_board.moves.hits.count == Board::SHIPS_ALLOWED
+  #     update!(winner: player_board)
   #   end
   # end
 end

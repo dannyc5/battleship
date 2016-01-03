@@ -3,6 +3,11 @@ class Cell < ActiveRecord::Base
   has_one :ship
   has_one :move
 
+  validates_presence_of :player_board_id
+  validates_uniqueness_of :row, scope: [:column, :player_board_id]
+  validates_inclusion_of :row, :in => PlayerBoard::SIZE
+  validates_inclusion_of :column, :in => PlayerBoard::SIZE
+
   # def generate_bot_ships!
   #   ships.create! generated_ship_attrs
   # end

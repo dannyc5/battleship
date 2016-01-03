@@ -7,6 +7,8 @@ class PlayerBoard < ActiveRecord::Base
   has_many :ships, through: :cells
   has_many :moves, through: :cells
 
+  validates_presence_of :game_id, :name, :type
+
   # def ship_at?(row:, column:)
   #   ships.exists?(row: row, column: column)
   # end
