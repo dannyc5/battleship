@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       resources :humans, only: [:create, :show]
       resources :bots, only: [:show]
       resources :players, only: [:show]
-      resources :ships, only: [:create, :show]
+      resources :ships, only: [:create, :show, :index]
     end
   end
 end

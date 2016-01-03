@@ -14,6 +14,13 @@ class Api::V1::ShipsController < ApplicationController
     render json: ship, serializer: serializer
   end
 
+  def index
+    board = Board.find params[:board_id]
+    ships = Ship.where(board_id: params[:board_id])
+    serializer = board.player.is_a?(Human) ? ShipSerializer : SecretShipSerializer
+    render json: ships, each_serializer: serializer
+  end
+
   private
 
   def ship_params
