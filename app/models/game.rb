@@ -1,5 +1,5 @@
 class Game < ActiveRecord::Base
-  belongs_to :winner, class_name: Player
+  belongs_to :winner, class_name: PlayerBoard
   has_many :player_boards
   has_one :human_board
   has_one :bot_board
@@ -17,9 +17,9 @@ class Game < ActiveRecord::Base
   #   player.opponent.ship_at? coordinates
   # end
 
-  # def won?
-  #   winner_id.present?
-  # end
+  def won?
+    winner_id.present?
+  end
 
   # private
 

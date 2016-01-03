@@ -4,10 +4,8 @@ class PlayerBoard < ActiveRecord::Base
 
   belongs_to :game
   after_create :generate_cells
-  # has_one :board
-  # has_many :moves
-
-  # delegate :ships, to: :board
+  has_many :ships, through: :cells
+  has_many :moves, through: :cells
 
   # def ship_at?(row:, column:)
   #   ships.exists?(row: row, column: column)

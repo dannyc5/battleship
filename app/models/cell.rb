@@ -1,6 +1,7 @@
 class Cell < ActiveRecord::Base
-  # belongs_to :player
-  # has_many :ships
+  belongs_to :player_board
+  has_one :ship
+  has_one :move
 
   # def generate_bot_ships!
   #   ships.create! generated_ship_attrs

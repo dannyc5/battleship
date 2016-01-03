@@ -21,7 +21,7 @@ describe Api::V1::GamesController do
   end
 
   describe 'DELETE destroy' do
-    let!(:game) { create(:game, :with_players) }
+    let!(:game) { create(:game, :with_player_boards) }
 
     it 'destroys a game' do
       expect {

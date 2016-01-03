@@ -1,8 +1,8 @@
 class Move < ActiveRecord::Base
   # include Locatable
 
-  # belongs_to :player
-  # delegate :game, to: :player
+  belongs_to :cell
+  delegate :player_board, to: :cell
 
   # validates_presence_of :player_id, :row, :column
   # validates_uniqueness_of :row, scope: [:column, :player_id]
