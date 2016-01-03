@@ -21,6 +21,8 @@ class CreateBattleship < ActiveRecord::Migration
       t.integer :player_id, null: false
       t.integer :row, null: false
       t.integer :column, null: false
+      t.boolean :hit, null: false, default: false
+
       t.timestamps null: false
     end
 
