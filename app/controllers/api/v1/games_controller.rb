@@ -1,6 +1,12 @@
 class Api::V1::GamesController < ApplicationController
   def index
-    @games = Game.all
+    if params[:id]
+      game = Game.find params[:id]
+      render json: game, serializer: GameSerializer
+    else
+      games = Game.all
+      render json: games, each_serializer: GameSerializer
+    end
   end
 
   def show

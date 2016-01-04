@@ -5,11 +5,15 @@ class Api::V1::MovesController < ApplicationController
     if move.save
       game = move.game
       game.respond_to_human_board!
-
       render json: move, serializer: MoveSerializer
     else
       render json: {errors: move.errors.messages}, status: 422
     end
+  end
+
+  def show
+    move = Move.find params[:id]
+    render json: move, serializer: MoveSerializer
   end
 
   def index
