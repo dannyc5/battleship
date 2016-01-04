@@ -1,4 +1,4 @@
-class Api::V1::PlayersController < ApplicationController
+class Api::V1::PlayerBoardsController < ApplicationController
   # def index
   #   players = Player.where(game_id: params[:game_id])
   #   render json: ActiveModel::ArraySerializer.new(players).serializable_object, root: 'players'

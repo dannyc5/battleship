@@ -6,8 +6,8 @@ Rails.application.routes.draw do
       resources :games, only: [:index, :show, :create, :destroy]
       resources :moves, only: [:create, :index]
       resources :human_boards, only: [:create, :show]
+      resources :cells, only: [:show]
       resources :ships, only: [:create, :show, :index]
-      # resources :boards, only: [:show]
       # resources :bots, only: [:show]
       # resources :players, only: [:show]
     end
