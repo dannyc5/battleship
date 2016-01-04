@@ -6,10 +6,9 @@ Rails.application.routes.draw do
       resources :games, only: [:index, :show, :create, :destroy]
       resources :moves, only: [:create, :index]
       resources :human_boards, only: [:create, :show]
-      resources :cells, only: [:show]
+      resources :cells, only: [:show, :index]
       resources :ships, only: [:create, :show, :index]
-      # resources :bots, only: [:show]
-      # resources :players, only: [:show]
+      resources :bot_boards, only: [:show]
     end
   end
 end
